@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        img {
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        audio {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            img {
+                max-width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="artworks-bPoWwBLNSuqLUahG-UkmEJg-t500x500.jpg\" alt="Aphex Twin">
+        <audio id="music">
+            <source src="pod-zaluipo-tvorog.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        const pic = document.querySelector('img');
+        const audio = document.getElementById('music');
+        let isPlaying = false;
+
+        pic.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+            
+            this.style.opacity = isPlaying ? 0.8 : 1;
+        });
+
+        audio.addEventListener('ended', () => {
+            isPlaying = false;
+            pic.style.opacity = 1;
+        });
+    </script>
+</body>
+</html>
